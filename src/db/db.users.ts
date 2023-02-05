@@ -48,10 +48,10 @@ export class DbUsers {
     return true;
   }
 
-  async update(id: string, data: UpdatePasswordDto): Promise<User> {
+  async update(id: string, dto: UpdatePasswordDto): Promise<User> {
     const user = this.users.find((user) => user.id === id);
     if (!user) throw new NotFoundException(Errors.USER_NOT_FOUND);
-    user.password = data.newPassword;
+    user.password = dto.newPassword;
     user.updatedAt = time;
     user.version += 1;
     return user;
